@@ -1,7 +1,7 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.5.4'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'   // 자바
+    id 'org.springframework.boot' version '3.5.4'   // 스프링부트 버전
+    id 'io.spring.dependency-management' version '1.1.7'    // 스프링 의존성 버전
 }
 
 group = 'com.example'
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web' // 스프링부트 웹 설치
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
