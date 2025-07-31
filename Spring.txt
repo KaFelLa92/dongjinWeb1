@@ -1,0 +1,38 @@
+[ 새 프로젝트 ]
+    JAVA 프로젝트 선택
+    1. 이름 : 아무거나
+    2. 위치 : 아무곳이나
+    3. 시스템빌드 : Gradle
+    4. JDK : 17
+    5. Gradle : Grooby
+    [생성]
+
+[ 스프링 설정 ]
+    0. https://start.spring.io/ 접속
+    1. project : Gradle - Grooby
+    2. Language : Java
+    3. Spring Boot : 3.5.4
+    4. Project Metadata : 프로젝트 부가 정보[기본값]
+    5. Packaging : Jar
+    6. Java : 17
+    7. Dependencies : MySQL Driver, Spring Web 각각 검색 후 [선택]
+    8. EXPLORE 클릭 후 나오는 코드를 build.gradle에 붙여넣기
+
+[ 프로젝트 ]
+    1. build.gradle에서 우측 상단에 새로고침 코끼리 클릭.
+    2. AppStart 실행
+    *. Gradle 환경에서는 jar 파일 안 써도 됨
+
+[ 웹 환경 설정 ]
+    1. AppStart 클래스 위에 @SpringBootApplication
+    2. AppStart 클래스 내 main함수 안에서
+        - SpringApplication.run( 현재클래스명.class );
+        예] SpringApplication.run ( AppStart.class );
+        확인 : AppStart 클래스 실행 후 브라우저에서 https://localhost:8080/ 접속
+            " Whitelabel Error Page " : 문구 나오면 정상
+            " 사이트에 연결할 수 없음 " : 스프링 서버가 꺼진 상태
+    3. Dao 코드 유지하고 Controller 클래스
+    3-1. Controller 클래스명 위에 @RestController
+    3-2. 각 기능 메소드 위에
+            저장 메소드(boardWrite) 위에 @PostMapping
+            조회 메소드(boardPrint) 위에 @GetMapping
