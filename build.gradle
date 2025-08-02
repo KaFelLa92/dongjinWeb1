@@ -1,29 +1,20 @@
 plugins {
-    id 'java'   // 자바
-    id 'org.springframework.boot' version '3.5.4'   // 스프링부트 버전
-    id 'io.spring.dependency-management' version '1.1.7'    // 스프링 의존성 버전
+    id 'java'
+    id 'org.springframework.boot' version '3.1.5'
+    id 'io.spring.dependency-management' version '1.1.3'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
+sourceCompatibility = '17'  // Java 버전 설정은 이렇게!
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web' // 스프링부트 웹 설치
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
