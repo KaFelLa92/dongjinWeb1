@@ -1,0 +1,36 @@
+-- [SPRING WEB] 실습1 : 게시판 RestController 만들기
+-- [ 제출방법 1 ] 카카오톡방에 ip 제출 ( 강사가 체크 할때 까지 서버 켜주세요 )
+-- [ 제출방법 2 ] 코드가 작성된 파일이 위치한 깃허브 상세 주소를 제출하시오.
+-- [ 요구사항 ]
+    1. AppStart 클래스 생성
+    2. BoardController 클래스 생성
+    3. 각 URL 매핑 만들기
+        1. 글쓰기           POST       "/exam1/board"
+        요청자료 : x , 응답자료 : true/false
+
+        2. 전체 글 조회      GET        "/exam1/board"
+        요청자료 : x , 응답자료 : 임의의 List 타입 ,  [ {bno:'',btitle:''} ,  {bno:'',btitle:''}  ]
+
+        3. 개별 글 조회      GET        "/exam1/board/view"
+        요청자료 : x , 응답자료 : 임의의 MAP  타입  ,  {bno:'',btitle:''}
+
+        4. 개글 글 수정      PUT        "/exam1/board"
+        요청자료 : x , 응답자료 : true 또는 false
+
+        5. 개별 글 삭제      DELETE     "/exam1/board"
+        요청자료 : x , 응답자료 : 임의의 삭제한 번호 , 3
+-- [참고]
+샘플 예1]
+        List<Map<String,String>> list = new ArrayList<>();
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("bno" , "1" );
+        map1.put("btitle" , "제목1");
+        list.add( map1 );
+        Map<String,String> map2 = new HashMap<>();
+        map2.put("bno" , "2" );
+        map2.put("btitle" , "제목2");
+        list.add( map2 );
+샘플 예2]
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("bno" , "1" );
+        map1.put("btitle" , "제목1");
