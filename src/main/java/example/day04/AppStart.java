@@ -1,12 +1,14 @@
-package example.day03.실습;
+package example.day04;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication // 기본세팅 1
+@SpringBootApplication
 public class AppStart {
     public static void main(String[] args) {
-        SpringApplication.run(AppStart.class); // 기본세팅 22
 
+        // AppStart 클래스는 항상
+        SpringApplication.run(AppStart.class);
+        // +
     }
 }

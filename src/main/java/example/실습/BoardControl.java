@@ -1,4 +1,4 @@
-package example.day03.실습;
+package example.실습;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

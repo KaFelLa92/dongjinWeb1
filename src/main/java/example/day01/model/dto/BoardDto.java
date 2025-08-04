@@ -6,6 +6,8 @@ public class BoardDto {
     private String bcontent;
     private String bwriter;
 
+    public BoardDto() {}
+
     // 2. 생성자(선택) , 메소드 : 자동완성
     public BoardDto(int bno, String bcontent, String bwriter) {
         this.bno = bno;

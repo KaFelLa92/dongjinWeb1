@@ -1,6 +1,7 @@
 package example.day01.model.dao;
 
 import example.day01.model.dto.BoardDto;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,34 +9,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Repository
 public class BoardDao {
-    // (*) 싱글톤
-    private BoardDao() {
-        connect(); // connect() 생성자에 들어가 있어야 등록 가능
-    }
 
-    public static final BoardDao instance = new BoardDao();
-
-    public static BoardDao getInstance() {
-        return instance;
-    }
-
-    // (*) DB 연동
-    // 1. 연결할 곳 정보 쓰기
-    private String db_url = "jdbc:mysql://localhost:3306/exam10";
-    private String db_user = "root";
-    private String db_password = "1234";
     private Connection conn;
 
-    // 2. 연동 함수
-    private void connect() {
+    public BoardDao() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(db_url, db_user, db_password);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exam10", "root", "1234");
         } catch (Exception e) {
             System.out.println(e);
         }
-    } // func end
+    }
 
     // (1) 등록 기능 구현
     public boolean boardWrite(BoardDto boardDto) {

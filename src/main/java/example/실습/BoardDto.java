@@ -1,4 +1,4 @@
-package example.day03.실습;
+package example.실습;
 
 public class BoardDto {
     // 1. 멤버변수
