@@ -1,4 +1,4 @@
-package example.실습;
+package 종합.예제11.model.dto;
 
 public class BoardDto {
     // 1. 멤버변수
@@ -7,35 +7,18 @@ public class BoardDto {
     private String bwriter;
 
     // 2. 생성자
-    // 2-1) 전체
+    // 1) 빈 생성자 : @Request 사용한다.
+    public BoardDto() {
+    }
+
+    // 2) 전체 생성자
     public BoardDto(int bno, String bcontent, String bwriter) {
         this.bno = bno;
         this.bcontent = bcontent;
         this.bwriter = bwriter;
     }
 
-    // 2-2) Post용
-    public BoardDto(String bcontent, String bwriter) {
-        this.bcontent = bcontent;
-        this.bwriter = bwriter;
-    }
-
-    // 2-3) 개별조회, 삭제용
-    public BoardDto(int bno) {
-        this.bno = bno;
-    }
-
-    // 2-4) 수정용
-    public BoardDto(int bno, String bcontent) {
-        this.bno = bno;
-        this.bcontent = bcontent;
-    }
-
-    // 2-5) 빈 생성자
-    public BoardDto() {
-    }
-
-    // 3. 메소드 (getter and setter , toString)
+    // 3. getter and setter , toString
     public int getBno() {
         return bno;
     }
@@ -65,7 +48,7 @@ public class BoardDto {
         return "BoardDto{" +
                 "bno=" + bno +
                 ", bcontent='" + bcontent + '\'' +
-                ", bwriter='" + bwriter + '\'' +
+                ", bwirter='" + bwriter + '\'' +
                 '}';
     }
 }

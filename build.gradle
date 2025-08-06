@@ -1,3 +1,5 @@
+// 라이브러리 변경될 때마다, 프로젝트 당 1번씩 새로고침.
+
 plugins {
     id 'java' // 자바
     id 'org.springframework.boot' version '3.5.4' // 스프링부트 버전
