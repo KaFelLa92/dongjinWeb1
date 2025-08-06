@@ -1,4 +1,4 @@
-package example.실습;
+package example.실습.model.dto;
 
 public class BoardDto {
     // 1. 멤버변수

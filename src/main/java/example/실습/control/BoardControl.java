@@ -1,8 +1,11 @@
-package example.실습;
+package example.실습.control;
 
+import example.실습.model.dto.BoardDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,15 +17,18 @@ public class BoardControl {
     // 매개변수 : String bcontent , String bwriter 또는 BoardDto
     // 반환 불리언
     // true 저장 성공 false 저장실패
+    // ***map***으로 처리
     @PostMapping("/board")
-    // @ResponseBody   // 반환하고 싶으면 아시죠? 레스트컨트롤러로 대체
-    public boolean boardWrite(@RequestBody BoardDto boardDto){
+    // @ResponseBody   // 반환하고 싶으면 아시죠? => 레스트컨트롤러로 대체
+    public Map<String , String> boardWrite(@RequestBody BoardDto boardDto){
         System.out.println("BoardControl.boardWrite");
         System.out.println("boardDto = " + boardDto);
         // 매개변수 설정 및 객체화
-        BoardDto result = new BoardDto(boardDto.getBcontent(), boardDto.getBwriter());
+        Map<String , String> map = new HashMap<>(); // 임의데이터
+        map.put("안녕하세요" , "유재석");
+        map.put("안녕하세요2" , "강호동");
         // 객체화된 dto를 반환
-        return true;
+        return map;
     } // func1 end
 
     // 2. get 맵핑
@@ -30,7 +36,8 @@ public class BoardControl {
     //  [   { bno : 1 , bcontent : "안녕하세요" , bwriter : "유재석"  },
     //      { bno : 2 , bcontent : "안녕하세요2" , bwriter : "강호동"  },   ]
     @GetMapping("/board")
-    public ArrayList<BoardDto> boardPrint (){
+    public List<BoardDto> boardPrint (){
+        System.out.println("BoardControl.boardPrint");
         ArrayList<BoardDto> list = new ArrayList<>();
         return list;
     }
