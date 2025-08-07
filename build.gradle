@@ -19,6 +19,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web' // 스프링부트 웹 설치
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j' // MYSQL JDBC 라이브러리 설치
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:11.0.7' // 톰캣 JSP 라이브러리 설치
 }

@@ -21,10 +21,12 @@
             https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper 접속
             implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:11.0.7' 복사
         2) 패키지 구성
-            (1) ( src -> main -> webapp 경로 생성 )
+            (1) 프로젝트 폴더내 ( src -> main -> webapp 경로 생성 )
             (2) webapp 폴더내 .jsp 파일 생성
             * 코드 작성은 VSCODE에서 합니다. 실행은 스프링, 인텔리제이에서.
             (3) 모든 .jsp 파일 상단에 jsp 설정코드
             <%@ page language = "java" contentType = "text/html; charset = utf-8" pageEncoding = "utf-8" %>
             * localhost:8080/(webapp) 이하 경로로 URL 정의된다.
             -> http://localhost:8080/test.jsp
+        3) 다른 .jsp 파일 불러오기 , 헤더/푸터 페이지 사용된다.
+            <jsp:include page="/.jsp경로"></jsp:include>
