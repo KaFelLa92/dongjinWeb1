@@ -26,7 +26,7 @@ const find = async () => {  // async 넣으면 동기화 함수
                     <td> ${student.sname} </td>
                     <td> ${student.skor} </td>
                     <td> ${student.smath} </td>
-                <tr>`
+                </tr>`
     }
     // 3. 출력 : .innerHTML
     studentTbody.innerHTML = html;

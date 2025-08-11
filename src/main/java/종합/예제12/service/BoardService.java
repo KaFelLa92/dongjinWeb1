@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import 종합.예제12.model.dao.BoardDao;
 import 종합.예제12.model.dto.BoardDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class BoardService {
     @Autowired BoardDao boardDao;
@@ -15,6 +18,39 @@ public class BoardService {
         System.out.println("boardDto = " + boardDto);
         boolean result = boardDao.boardWrite( boardDto );
         return result;
+    } // func end
+
+    // [2] 전체조회
+    public List<BoardDto> boardPrint(){
+        System.out.println("BoardService.boardPrint");
+        System.out.println("boardDao = " + boardDao);
+        List<BoardDto> result = boardDao.boardPrint();
+        return result;
+    } // func end
+
+    // [3] 특정조회
+    public BoardDto boardFind(int bno){
+        System.out.println("BoardService.boardFint");
+        System.out.println("boardDao = " + boardDao);
+        BoardDto result = boardDao.boardFind( bno );
+        return result;
     }
+
+    // [4] 삭제
+    public boolean boardDelete(int bno){
+        System.out.println("BoardService.boardDelete");
+        System.out.println("bno = " + bno);
+        boolean result = boardDao.boardDelete( bno );
+        return result;
+    }
+
+    // [5] 수정
+    public boolean boardUpdate(BoardDto boardDto){
+        System.out.println("BoardService.boardUpdate");
+        System.out.println("boardDto = " + boardDto);
+        boolean result = boardDao.boardUpdate( boardDto );
+        return result;
+    }
+
 
 } // class end
