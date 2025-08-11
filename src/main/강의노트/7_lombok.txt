@@ -1,0 +1,28 @@
+[ 롬복 ] lombok
+    1. 정의 : 반복되는 코드들을 줄여주는 라이브러리 (미리 만들어진 코드)
+    2. 목적 : DTO, VO, ENTITY에서 주로 사용된다.
+        - DTO : data tranfer object 데이터 (레이어 간의) 이동 객체
+        - VO : value object 데이터 값을 가진 객체 (*읽기모드/setter없음)
+        - ENTITY : 개체(실재/본체) 데이터의 실제 ( 주로 DB 레코드 뜻 )
+    3. 설치
+        1) (환경)인텔리제이 설치 [파일] -> [설정] -> [플러그인] -> lombok 검색 -> 설치
+        2) (프로젝트) 그레이들 설치 : https://start.spring.io/ 에서 롬복 검색
+        디펜던시에서 롬복 설정 후, build.gradle의 dependencies에  아래 두 줄 추가
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+[ 롬복 주요 어노테이션 ]
+    1. @NoArgsConstructor        : 디폴트(기본) 생성자 코드 생성
+    2. @AllArgsConstructor       : 모든 매개변수 생성자 코드 생성
+        -> 몇몇 라이브러리에서 필수로 사용됨
+            @RequestXXX 들이 매개변수를 자동 매핑할때 사용하므로 필수
+    3. @Getter                   : 멤버변수의 getter 메소드 코드 생성
+    4. @Setter                   : 멤버변수의 setter 메소드 코드 생성
+        -> getter and setter : private 멤버변수에 대해 외부 간접 접근 위해서
+    5. @ToString                 : 객체 출력시 주소값 대신에 멤버변수 값을 문자열로 반환
+        -> 개발자가 console에 객체 정보 확인차
+
+    * 어노테이션이란? @ 함으로써 바로 기능이 주입되는 방식이 아닌,
+                    프로젝트가 컴파일(실행)될때 혹은 리플렉션(실행중) 될때 부가코드가 실행된다.
+        -> 프로젝트폴더내 -> build 폴더에서 확인가능
+
