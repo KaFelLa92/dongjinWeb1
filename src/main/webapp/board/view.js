@@ -46,3 +46,9 @@ const boardDelete = async () => {
 }
 
 // [3] 수정페이지로 이동
+const boardUpdateView = () => {
+    // 1. 수정할 게시물 번호 가져오기
+    const bno = new URLSearchParams( location.search ).get('bno');
+    // 2. 수정페이지에게 bno 전달
+    location.href=`/board/update.jsp?bno=${ bno }`;
+} // func end

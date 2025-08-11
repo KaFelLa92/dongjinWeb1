@@ -11,23 +11,24 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container mt-4">
             <jsp:include page="/board/header.jsp"></jsp:include>
-        </div>
-        <div>
-            <h3> 게시물 전체조회 페이지 </h3>
-            <a href="/board/write.jsp"> 글쓰기 </a>
-            <table border="1">
-                <tr>
-                    <th> 번호 </th>
-                    <th> 내용 </th>
-                    <th> 작성자 </th>
-                </tr>
-                <tbody id="boardTbody">
-                    <tr>
-                        <th> 내용 </th>
-                    </tr>
 
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>게시물 전체조회</h3>
+                <a href="/board/write.jsp" class="btn btn-primary">글쓰기</a>
+            </div>
+
+            <table class="table table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 10%;">번호</th>
+                        <th style="width: 70%;">내용</th>
+                        <th style="width: 20%;">작성자</th>
+                    </tr>
+                </thead>
+                <tbody id="boardTbody">
+                    <!-- JS will populate this -->
                 </tbody>
             </table>
         </div>

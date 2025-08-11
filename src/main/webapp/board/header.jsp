@@ -1,24 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <meta charset='utf-8'>
-        <title> 헤더 페이지 </title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
-        
-
-    </head>
-
-    <body>
-        <div class="container">
-            <h3> 자유게시판 Header </h3>
-            <oi>
-                <li> <a href="/board/index.jsp"> 홈 </a> </li>
-                <li> <a href="/board/list.jsp"> 게시판 </a> </li>
-            </oi>
-        </div>
-
-    </body>
-
-    </html>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/board/index.jsp" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <span class="fs-4">자유게시판</span>
+    </a>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/board/index.jsp" class="nav-link">홈</a></li>
+        <li class="nav-item"><a href="/board/list.jsp" class="nav-link">게시판</a></li>
+    </ul>
+</header>

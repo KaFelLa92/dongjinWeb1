@@ -12,18 +12,18 @@ const boardPrint = async () => {
     const boardTbody = document.querySelector('#boardTbody');
     // 4. 무엇을
     let html = ``;
-    for(let i = 0; i < data.length; i++){
+    for ( let i = 0; i < data.length; i++){
         const board = data[i];
         html += `<tr>
-                    <td> ${board.bno} <td>
+                    <td>${board.bno}</td>
                     <td>
-                        <a href="/board/view.jsp?bno=${board.bno}">
-                        ${board.bcontent} 
-                        </a> 
-                    <td>
-                    <td> ${board.bwriter} <td>                    
-                </th>`
-    }
+                        <a href="/board/view.jsp?bno=${board.bno}" class="text-decoration-none text-dark">
+                            ${board.bcontent}
+                        </a>
+                    </td>
+                    <td>${board.bwriter}</td>
+                </tr>`
+    };
 
     // 5. 출력
     boardTbody.innerHTML = html;
