@@ -1,0 +1,24 @@
+
+* 콘솔 사이드 메뉴 중 최상단 메시지를 클릭하여 'ERROR' 메시지 이하 부분을 구글링 or GPT 돌리기
+
+1) 스프링서버는 (AppStart) 2개 이상 실행 안 됨
+    port(프로그램 네트워크 식별번호 : 프로그램당 1개) 중복임.
+    (1) 현재 실행중인 AppStart 명 확인
+    (2) Web server failed to start. Port 8080 was already in use.
+        - 간혹 port 자동 종료가 안 되는 경우
+        방법1) 컴퓨터 재시작
+        방법2) 직접 port 끄기
+            cmd에서 'netstat -ano'치고, 로컬 주소에 8080이 있으면 스프링이 켜져있는 것.
+            같은 열의 PID를 확인 후, 'taskkill /f / pid PID번호 입력'
+
+2) 스프링에서 resources 폴더와 webapp 폴더는 모든 AppStart가 공유한다.
+3) JSP는 무조건 webapp 폴더 안에 있는 자료(JSP/CSS/JS/IMG)만 사용 가능.
+4) 프론트엔드 코드(JSP/CSS/JS) 들은 일부만 수정할 경우 브라우저 식별 안 됨.
+    단축키 : ctrl + shift + r 또는 ctrl + F5로 강력 새로고침
+5) 모든 프로그래밍 언어들은 키워드(미리 만들어진 단어)로 변수명/함수명/클래스명 안 됨.
+    1. **JAVA는 키워드 오류 바로 발생**
+    2. **JS는 키워드 오류를 알려주지 않아서 콘솔 확인해줘야함**
+    3. 안 되는 키워드 확인할 것. (ex : let, public, short 등)
+
+
+

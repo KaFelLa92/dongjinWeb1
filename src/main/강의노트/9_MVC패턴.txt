@@ -4,17 +4,18 @@
     3. 종류
         1] MVC1         : controller/view <--> model
             -> JSP 파일에서 HTML과 JAVA를 한번에 작성
-            -> 장점 : 개발속도 , 단점 : 유지보수/역할분담
+            -> 장점 : 개발속도 , 단점 : 유지보수/역할분담 , 현재 강의에서는 안 함
         2] MVC2         : view <--> controller <--> model
-            -> view 파일은 HTML만 작성 , controller에서는 제어(로직) 작성
+            -> view 파일은 HTML만 작성 , controller에서는 제어(로직)인 JAVA만 작성
             -> 장점 : 화면/로직 분리 , 단점 : 파일 수 증가로 관리 힘듬
         3] MVC2 3Tier   : view <--> controller <--> service <--> model
             -> Spring MVC에서 사용되는 패턴 , controller의 역할 (제어와 로직) 분리
-            -> 장점 : 관점(기능)지향프로그래밍 특화 / 역할분담 , 단점 : 파일 수 증가로 관리 힘듬
+            -> 장점 : 관점(기능)지향프로그래밍 특화 / 역할분담 / 유지보수 , 단점 : 파일 수 증가로 관리 힘듬
 
     4. 구역/레이어 종류
         1] View : JSP/REACT(HTML , CSS , JS)
             -> 역할 : 프론트엔드(화면구현)
+            -> Spring 프로젝트에서는 resources 폴더에서 찾는다. *JSP는 webapp 폴더에서 찾는다.*
 
         2] Controller : @RestController @Controller
             -> 역할 : [주] HTTP 통신(요청/응답) , 매개변수/반환 타입 관리 변환 , view와 service 중개 (타입) 유효성검사
