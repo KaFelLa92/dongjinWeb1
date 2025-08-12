@@ -2,6 +2,7 @@ package 종합.과정평가.model.dao;
 
 import org.springframework.stereotype.Repository;
 import 종합.과정평가.model.dto.MemberDto;
+import 종합.과정평가.model.dto.MemberSaleDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,12 +62,12 @@ public class MemberDao extends Dao {
             while (rs.next()){
                 MemberDto memberDto = new MemberDto();
                 memberDto.setCustno(rs.getInt("custno"));
-                memberDto.setCustname(rs.getNString("custname"));
-                memberDto.setPhone(rs.getNString("phone"));
-                memberDto.setAddress(rs.getNString("address"));
-                memberDto.setJoindate(rs.getNString("joindate"));
-                memberDto.setGrade(rs.getNString("grade"));
-                memberDto.setCity(rs.getNString("city"));
+                memberDto.setCustname(rs.getString("custname"));
+                memberDto.setPhone(rs.getString("phone"));
+                memberDto.setAddress(rs.getString("address"));
+                memberDto.setJoindate(rs.getString("joindate"));
+                memberDto.setGrade(rs.getString("grade"));
+                memberDto.setCity(rs.getString("city"));
                 result.add(memberDto);
             }
             rs.close(); ps.close();
@@ -77,14 +78,70 @@ public class MemberDao extends Dao {
     } // func end
 
     // 3. 회원매출조회
-    // 회원매출조회 페이지에서 진행(money)
+    // 회원매출조회 페이지에서 진행(sale)
     // 회원번호, 회원성명, 고객등급, 매출 순으로 출력. 매출식은 같은 회원 번호 기준으로 sum(price)
     // 매출이 높은 순서대로 조회 (desc)
     // 매출 0이면 조회하지 않음
+    public List<MemberSaleDto> memberSales(){
+        List<MemberSaleDto> result = new ArrayList<>();
+        try{
+            String sql = "select m.custno , m.custname , m.grade , sum(mo.price) as 매출\n" +
+                    "from member_tbl_02 m inner join money_tbl_02 mo on m.custno = mo.custno\n" +
+                    "group by m.custno, m.custname, m.grade\n" +
+                    "having sum(mo.price) > 0\n" +
+                    "order by 매출 desc;";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                MemberSaleDto memberSaleDto = new MemberSaleDto();
+                memberSaleDto.setCustno(rs.getInt("custno"));
+                memberSaleDto.setCustname(rs.getString("custname"));
+                memberSaleDto.setGrade(rs.getString("grade"));
+                memberSaleDto.setSale(rs.getInt("매출")); // SQL문에서 as 쓰면 여기도 바꿔줘야함
+                result.add(memberSaleDto);
+            }
+        rs.close(); ps.close();
+        } catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return result;
+    }
 
     // 4. 회원정보수정
     // 회원목록조회/수정에서 회원번호 클릭하면 수정 페이지 등장 (update)
     // 해당 회원정보 수정 후 '회원정보수정이 완료되었습니다' 메시지 출력
+    // { "custno" : "100001" , "custname" : "새사냥" , "phone" : "011-3344-5678" , "address" : "아이쿠" , "grade" : "A" , "city" : "01" } 통신 이렇게
+    public boolean memberUpdate(MemberDto memberDto){
+        try{
+            String sql = "update member_tbl_02 set custname = ? , phone = ? , address = ? , grade = ? , city = ? where custno = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, memberDto.getCustname());
+            ps.setString(2, memberDto.getPhone());
+            ps.setString(3, memberDto.getAddress());
+            ps.setString(4, memberDto.getGrade());
+            ps.setString(5, memberDto.getCity());
+            ps.setInt(6, memberDto.getCustno());
+            int count = ps.executeUpdate();
+            if (count == 1){
+                return true;
+            } return false;
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    } // func end
 
+
+    // * 회원가입용으로 현재 custno에서 +1하는 코드 만들기
+    public int memberAddNextNo(int custno){
+        int nextNo = 0;
+
+        try{
+            String sql = ""
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
 }

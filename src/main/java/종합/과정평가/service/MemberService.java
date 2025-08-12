@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import 종합.과정평가.model.dao.MemberDao;
 import 종합.과정평가.model.dto.MemberDto;
+import 종합.과정평가.model.dto.MemberSaleDto;
 
 import java.util.List;
 
@@ -28,8 +29,16 @@ public class MemberService {
     }
 
     // 3. 회원 매출조회
+    public List<MemberSaleDto> memberSales(){
+        List<MemberSaleDto> result = memberDao.memberSales();
+        return result;
+    }
 
     // 4. 회원 정보수정
+    public boolean memberUpdate(MemberDto memberDto){
+        boolean result = memberDao.memberUpdate(memberDto);
+        return result;
+    }
 
 
 }

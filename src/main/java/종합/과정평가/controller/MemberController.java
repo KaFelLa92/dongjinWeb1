@@ -1,11 +1,9 @@
 package 종합.과정평가.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import 종합.과정평가.model.dto.MemberDto;
+import 종합.과정평가.model.dto.MemberSaleDto;
 import 종합.과정평가.service.MemberService;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class MemberController {
     // 1. 회원 등록
     //    홈쇼핑 회원 등록 페이지에서 처리 (add)
     @PostMapping ("/add")
-    public boolean memberAdd(MemberDto memberDto){
+    public boolean memberAdd(@RequestBody MemberDto memberDto){
         boolean result = memberService.memberAdd(memberDto);
         return result;
     }
@@ -39,14 +37,25 @@ public class MemberController {
     }
 
     // 3. 회원매출조회
-    // 회원매출조회 페이지에서 진행(money)
+    // 회원매출조회 페이지에서 진행(sale)
     // 회원번호, 회원성명, 고객등급, 매출 순으로 출력. 매출식은 같은 회원 번호 기준으로 sum(price)
     // 매출이 높은 순서대로 조회 (desc)
     // 매출 0이면 조회하지 않음
+    @GetMapping ("/sale")
+    public List<MemberSaleDto> memberSales(){
+        List<MemberSaleDto> result = memberService.memberSales();
+        return result;
+    }
+
 
     // 4. 회원정보수정
     // 회원목록조회/수정에서 회원번호 클릭하면 수정 페이지 등장 (update)
     // 해당 회원정보 수정 후 '회원정보수정이 완료되었습니다' 메시지 출력
+    @PutMapping ("/update")
+    public boolean memberUpdate(@RequestBody MemberDto memberDto){
+        boolean result = memberService.memberUpdate(memberDto);
+        return result;
+    }
 
 
 }
