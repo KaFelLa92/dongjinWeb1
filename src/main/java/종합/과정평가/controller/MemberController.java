@@ -57,5 +57,12 @@ public class MemberController {
         return result;
     }
 
+    // * 회원넘버입력식
+    @GetMapping ("/add")
+    public int memberAddNextNo(){
+        int result = memberService.memberAddNextNo();
+        return result;
+    }
+
 
 }

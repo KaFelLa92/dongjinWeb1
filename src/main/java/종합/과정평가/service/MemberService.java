@@ -40,5 +40,11 @@ public class MemberService {
         return result;
     }
 
+    // * 회원 넘버 입력식
+    public int memberAddNextNo(){
+        int result = memberDao.memberAddNextNo();
+        return result;
+    }
+
 
 }

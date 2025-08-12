@@ -133,15 +133,20 @@ public class MemberDao extends Dao {
 
 
     // * 회원가입용으로 현재 custno에서 +1하는 코드 만들기
-    public int memberAddNextNo(int custno){
+    public int memberAddNextNo(){
         int nextNo = 0;
+        String sql = "select ifnull(max(custno) , 0) + 1 as nextNo from member_tbl_02";
 
         try{
-            String sql = ""
-
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                nextNo = rs.getInt("nextNo");
+            }
         } catch (Exception e){
             System.out.println(e);
         }
-    }
+        return nextNo;
+    } // func end
 
 }
