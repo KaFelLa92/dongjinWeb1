@@ -6,7 +6,9 @@ import 종합.과정평가.model.dto.MemberDto;
 import 종합.과정평가.model.dto.MemberSaleDto;
 import 종합.과정평가.service.MemberService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping ("/assessment")
@@ -58,10 +60,13 @@ public class MemberController {
     }
 
     // * 회원넘버입력식
+    // 맵핑으로
     @GetMapping ("/add")
-    public int memberAddNextNo(){
+    public Map<String, Object> memberAddNextNo(){
+        Map<String , Object> map = new HashMap<>();
         int nextNo = memberService.memberAddNextNo();
-        return nextNo;
+        map.put("nextNo" , nextNo);
+        return map;
     }
 
 

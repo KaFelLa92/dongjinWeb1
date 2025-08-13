@@ -85,11 +85,11 @@ public class MemberDao extends Dao {
     public List<MemberSaleDto> memberSales(){
         List<MemberSaleDto> result = new ArrayList<>();
         try{
-            String sql = "select m.custno , m.custname , m.grade , sum(mo.price) as 매출\n" +
+            String sql = "select m.custno , m.custname , m.grade , sum(mo.price) as sale\n" +
                     "from member_tbl_02 m inner join money_tbl_02 mo on m.custno = mo.custno\n" +
                     "group by m.custno, m.custname, m.grade\n" +
                     "having sum(mo.price) > 0\n" +
-                    "order by 매출 desc;";
+                    "order by sale desc;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -97,7 +97,7 @@ public class MemberDao extends Dao {
                 memberSaleDto.setCustno(rs.getInt("custno"));
                 memberSaleDto.setCustname(rs.getString("custname"));
                 memberSaleDto.setGrade(rs.getString("grade"));
-                memberSaleDto.setSale(rs.getInt("매출")); // SQL문에서 as 쓰면 여기도 바꿔줘야함
+                memberSaleDto.setSale(rs.getInt("sale")); // SQL문에서 as 쓰면 여기도 바꿔줘야함
                 result.add(memberSaleDto);
             }
         rs.close(); ps.close();

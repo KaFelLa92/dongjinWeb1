@@ -72,17 +72,22 @@ const memberAddView = async () => {
     // 이미 value 있는 값들
     // DAO에서 현재 회원번호 +1하는 코드 만들어서 넣기
     const nextNo = document.querySelector('.nextNo');
-    // joindate는 new date() 로 오늘 날짜 넣으면 됨
-    const joindate = document.querySelector('.joindate')
-    // 출력 구현
     nextNo.value = data.nextNo;
-    joindate.value = data.joindate;
+
+    // date는 new Date() 로 오늘 날짜 넣으면 됨
+    const date = document.querySelector('.date');
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    date.value = `${year}-${month}-${day}`;
+    console.log(date.value);
 }
 memberAddView();
 
 // [3] 조회로 이동
 const memberToList = async () => {
     console.log('memberToList XXOK');
-    location.href="/assessment/list.jsp";
+    location.href = "/assessment/list.jsp";
 }
 

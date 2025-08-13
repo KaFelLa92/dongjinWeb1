@@ -7,6 +7,9 @@ import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class MemberDao extends Dao {
@@ -65,5 +68,104 @@ public class MemberDao extends Dao {
         }
         return 0;
     } // func end
-    
-}
+
+    // 4. 내 정보
+    // 현재 로그인중(*세션 정보*)인 회원정보(비밀번호 제외)를 모두 조회한다.
+    public MemberDto info ( int mno ){
+        try{
+            String sql = "select * from member where mno = ?"; // rs.next에서 pwd 안넣으면 되므로 와일드카드 사용 가능
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, mno);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                MemberDto memberDto = new MemberDto(); // 패스워드 제외
+                memberDto.setMno(rs.getInt("mno"));
+                memberDto.setMid(rs.getString("mid"));
+                memberDto.setMname(rs.getString("mname"));
+                memberDto.setMphone(rs.getString("mphone"));
+                memberDto.setMdate(rs.getString("mdate"));
+                return memberDto;
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return null; // 로그인 세션(mno) 없을 경우 null
+    }
+
+    // 5. 특정 필드/열/컬럼의 값 중복 존재 확인 (중복검사)
+    // 중복검사할 DB테이블의 속성명과 값을 매개변수로 받는다
+    public boolean check (String type , String data){
+        try{
+            // ?type=value&data=value 타입을 넣어줘야함 (매개변수)
+            // String sql = "select * from member where mid = ?";
+            // String sql = "select * from member where mphone = ?";
+            // 상기처럼 해도 되지만, 이번에는 타입을 받아서 함
+            String sql = "select * from member where " +type+ " = ?"; // where 뒤에 띄어쓰기해야, wheremid 되는 참상 막을 수 있다
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, data);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                return true; // 중복이면 true
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return false;
+    } // func end
+
+    // 6. 회원정보수정
+    // 현재 로그인된 회원의 새로운 이름과 연락처를 수정
+    //(패스워드는 개별적으로 별도 수정 처리 )
+    public boolean update(MemberDto memberDto){
+        try{
+            String sql = "update member set mname = ? , mphone = ? where mno = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, memberDto.getMname());
+            ps.setString(2, memberDto.getMphone());
+            ps.setInt(3, memberDto.getMno());
+            int count = ps.executeUpdate();
+            if (count == 1){
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } // catch end
+        return false;
+    } // func end
+
+    // 7. "회원비밀번호수정updatePassword()" : 현재 로그인된 회원 패스워드와 일치하면 패스워드 수정
+    // 현재 로그인된 회원의 기존 패스워드와 새로운 패스워드를 받아서 기존 패스워드가 일치하면 수정한다.
+    // 일회성 객체 이동시 Map 컬렉션 프레임워크로 대체할 수 있음.
+    // { "oldpwd" : "pass1234" , "newpwd" : "hong12345" } 이렇게 테스트
+    public boolean updatePassword(int mno , Map<String , String> map){
+        try{
+            String sql = "update member set mpwd = ? where mno = ? and mpwd = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, map.get("newpwd")); // 새 패스워드
+            ps.setInt(2, mno);
+            ps.setString(3, map.get("oldpwd")); // 기존 패스워드
+            int count = ps.executeUpdate();
+            return count == 1;
+        } catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return false;
+    } // func end
+
+    // 8. "회원탈퇴 delete()"	"현재 로그인중인 회원 정보 삭제
+    //(실무에서는 *상태변경*으로 관리)"
+    public boolean delete(int mno , String oldpwd){
+        try{
+            String sql = "delete from member where mno = ? and mpwd = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, mno);
+            ps.setString(2, oldpwd);
+            int count = ps.executeUpdate();
+            return count == 1;
+        } catch (Exception e) {
+            System.out.println(e);
+        } // catch end
+        return false;
+    } // func end
+
+} // class end
