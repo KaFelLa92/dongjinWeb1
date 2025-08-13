@@ -136,7 +136,6 @@ public class MemberDao extends Dao {
     public int memberAddNextNo(){
         int nextNo = 0;
         String sql = "select ifnull(max(custno) , 0) + 1 as nextNo from member_tbl_02";
-
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

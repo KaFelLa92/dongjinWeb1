@@ -50,6 +50,12 @@ select * from money_tbl_02;
 
 -- 조회할 것 : 회원번호, 회원성명, 고객등급, 회원번호와 일치하는 매출 sum(price).
 -- 조건문 : 매출이 0 이하이면 출력하지말 것, 매출이 높은 순서대로 조회할 것(desc)
-select custno , custname , grade 
-from member_tbl_02 price 
-from member_tbl_02 join member_tbl_02 on money_tbl_02.custno = money_tbl_02.custno;
+select m.custno , m.custname , m.grade , sum(mo.price) as 매출
+from member_tbl_02 m inner join money_tbl_02 mo on m.custno = mo.custno
+group by m.custno, m.custname, m.grade
+having sum(mo.price) > 0
+order by 매출 desc;
+
+update member_tbl_02 set custname = ? , phone = ? , address = ? , grade = ? , city = ? where custno = ?
+
+select max

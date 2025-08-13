@@ -60,8 +60,8 @@ public class MemberController {
     // * 회원넘버입력식
     @GetMapping ("/add")
     public int memberAddNextNo(){
-        int result = memberService.memberAddNextNo();
-        return result;
+        int nextNo = memberService.memberAddNextNo();
+        return nextNo;
     }
 
 

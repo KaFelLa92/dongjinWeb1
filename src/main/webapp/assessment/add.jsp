@@ -15,7 +15,7 @@
 
         <div>
             <h3> 홈쇼핑 회원 등록 </h3>
-            회원번호(자동발생) <input class="custno" type="number" readonly/> <!-- 밸류 있어야함. 수정 불가 -->
+            회원번호(자동발생) <input class="nextNo" type="number" readonly/> <!-- 밸류 있어야함. 수정 불가 -->
             회원성명 <input class="custname" type="text" />
             회원전화 <input class="phone" type="text" />
             회원주소 <input class="address" type="text"/>

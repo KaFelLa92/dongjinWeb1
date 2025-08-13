@@ -42,8 +42,8 @@ public class MemberService {
 
     // * 회원 넘버 입력식
     public int memberAddNextNo(){
-        int result = memberDao.memberAddNextNo();
-        return result;
+        int nextNo = memberDao.memberAddNextNo();
+        return nextNo;
     }
 
 

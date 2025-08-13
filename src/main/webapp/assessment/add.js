@@ -66,16 +66,16 @@ const memberAdd = async () => {
 // [2] 등록에 정해진 값 투사하기
 const memberAddView = async () => {
     console.log('memberAddView XXOK');
-    // 이미 value 있는 값들
-    // DAO에서 현재 회원번호 +1하는 코드 만들어서 넣기
-    const custno = document.querySelector('.custno');
-    // joindate는 new date() 로 오늘 날짜 넣으면 됨
-    const joindate = document.querySelector('.joindate')
     // fetch
     const response = await fetch("/assessment/add")
     const data = await response.json();
+    // 이미 value 있는 값들
+    // DAO에서 현재 회원번호 +1하는 코드 만들어서 넣기
+    const nextNo = document.querySelector('.nextNo');
+    // joindate는 new date() 로 오늘 날짜 넣으면 됨
+    const joindate = document.querySelector('.joindate')
     // 출력 구현
-    custno.value = data.custno;
+    nextNo.value = data.nextNo;
     joindate.value = data.joindate;
 }
 memberAddView();
