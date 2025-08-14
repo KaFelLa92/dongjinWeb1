@@ -48,7 +48,7 @@ const memberUpdate = async () => {
 
     // 객체화
     const obj = {
-        // custno,
+        custno,
         custname,
         phone,
         address,
@@ -68,7 +68,7 @@ const memberUpdate = async () => {
     // result
     if (data == true) {
         alert('회원정보수정이 완료 되었습니다!')
-        location.href = "/assessment/list";
+        location.href = "/assessment/list.jsp";
     } else {
         alert('회원정보수정이 실패했습니다. 관리자 문의 010-XXXX-XXXX')
     }

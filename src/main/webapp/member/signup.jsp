@@ -16,17 +16,18 @@
 
         <div class="login-container" id="container">
             <h2> 회원가입 </h2>
-            아이디 : <input type="text" class="idInput form-group" id="idInput" placeholder="아이디입력" /> <br />
-            <div class="idcheck" onkeyup="idcheck()"> </div> <br/>
+            아이디 : <input type="text" onkeyup="idcheck()" class="idInput form-group" id="idInput" placeholder="아이디입력" /> <br/ >
+            <div class="idcheck"> </div> <br/>
             패스워드 : <input type="password" class="pwdInput form-group" id="pwdInput" placeholder="패스워드입력" /> <br />
             이름 : <input type="text" class="nameInput form-group" id="nameInput" placeholder="성함입력" /> <br />
-            연락처 : <input type="text" class="phoneInput form-group" id="phoneInput" placeholder="연락처입력" /> <br />
-            <div class="phonecheck" onkeyup="phonecheck()"> </div> <br/>
+            연락처 : <input type="text" onkeyup="phonecheck()" class="phoneInput form-group" id="phoneInput" placeholder="연락처입력" /> <br />
+            <div class="phonecheck" > </div> <br/>
             <button class="login-btn" type="button" onclick="signup()"> 회원가입 </button> <br />
             <a class="sub-links" href="/member/login.jsp"> 로그인하기 </a>
             <a class="sub-links" href="/member/find.jsp"> 아이디/비밀번호찾기 </a>
         </div>
 
+        <script src="/js/check/check.js"></script>
         <script src="/js/member/signup.js"></script>
 
     </body>

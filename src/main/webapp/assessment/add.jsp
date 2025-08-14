@@ -24,7 +24,7 @@
                 고객등급[A:VIP,B:일반,C:직원]: <input class="grade" type="text" /> <br/><br/>
                 도시코드: <input class="city" type="text"/> <br/><br/>
                 <p style="text-align:center;">
-                    <button type="button" onclick="memberAdd()"> 등록 </button>
+                    <button type="button" onclick="memberAdd(event)"> 등록 </button>
                     <button type="button" onclick="memberToList()"> 조회 </button>
                 </p>
             </form>

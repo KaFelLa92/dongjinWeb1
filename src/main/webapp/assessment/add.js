@@ -8,7 +8,9 @@ console.log('add XXOK');
 // 유효성 검사 : 값 입력되어있지 않을 때 등록 클릭하면 '회원성명 입력되지 않았습니다' 출력 (view탭에서 alert()로 )
 // 각 항목별로 해야함
 // 유효성 검사 통과하면 '회원등록이 완료 되었습니다!' 알러트 뜨고, 테이블에 저장함.
-const memberAdd = async () => {
+const memberAdd = async (event) => {
+    event.preventDefault();   
+
     console.log('memberAdd XXOK');
     // 입력할 값들
     const custname = document.querySelector('.custname').value;
@@ -56,7 +58,7 @@ const memberAdd = async () => {
     // result
     if (data == true) {
         alert('회원등록이 완료 되었습니다!')
-        location.href = "/assessment/list";
+        location.href = "/assessment/list.jsp";
     } else {
         alert('회원등록이 실패했습니다. 관리자 문의 010-XXXX-XXXX')
     }
