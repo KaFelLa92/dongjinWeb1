@@ -122,6 +122,8 @@ public class MemberController {
         int loginMno = (int)obj;
         // 4. 서비스 반환
         boolean result = memberService.updatePassword(loginMno , map);
+        // 세션 만료 후 로그아웃
+        session.removeAttribute("loginMno");
         return result;
     }
 
@@ -138,6 +140,10 @@ public class MemberController {
         int loginMno = (int)session.getAttribute("loginMno");
         // 4. 서비스 반환
         boolean result = memberService.delete(loginMno , oldpwd);
+        // 삭제되었으면(세션만료) 로그아웃
+        if(result) {
+            session.removeAttribute("loginMno");
+        }
         return result;
     }
 

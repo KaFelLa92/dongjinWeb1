@@ -19,6 +19,14 @@
     1. **JAVA는 키워드 오류 바로 발생**
     2. **JS는 키워드 오류를 알려주지 않아서 콘솔 확인해줘야함**
     3. 안 되는 키워드 확인할 것. (ex : let, public, short 등)
-
-
+6) 프론트엔드에서 경로 설정
+    1. jsp : webapp 이하 경로부터 시작
+        주소 호출 시 절대경로 vs 상대경로 (상대경로가 유지보수에 안전)
+        [O] <jsp:include page="http://localhost:8080/header.jsp"></jsp:include>
+        [O] <jsp:include page="/header.jsp"></jsp:include>
+        [X] <jsp:include page="header.jsp"> </jsp:include>
+        띄어쓰기 조심, 슬래시 빠지는 거 조심
+    2. fetch : controller 경로 확인
+        [O] fetch("http://localhost:8080/member/login")
+        [O] fetch("/member/login")
 

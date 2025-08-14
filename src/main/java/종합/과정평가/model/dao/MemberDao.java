@@ -131,6 +131,32 @@ public class MemberDao extends Dao {
         return false;
     } // func end
 
+    // 4. 회원정보수정 - 회원정보조회
+    // update에서 기존 회원정보를 출력하는 메소드
+    public MemberDto memberFind(int custno){
+        MemberDto result = null; // 객체 try/catch 밖에 꺼내두기
+        try{
+            String sql = "select * from member_tbl_02 where custno = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, custno);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                result = new MemberDto();
+                result.setCustno((rs.getInt("custno")));
+                result.setCustname(rs.getString("custname"));
+                result.setPhone(rs.getString("phone"));
+                result.setAddress(rs.getString("address"));
+                result.setJoindate(rs.getString("joindate"));
+                result.setGrade(rs.getString("grade"));
+                result.setCity(rs.getString("city"));
+            }
+            rs.close(); ps.close();
+        }catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return result;
+    } // func end
+
 
     // * 회원가입용으로 현재 custno에서 +1하는 코드 만들기
     public int memberAddNextNo(){

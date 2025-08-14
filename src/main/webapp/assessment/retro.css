@@ -1,0 +1,143 @@
+/* retro.css */
+@charset "UTF-8";
+
+/* --- Base Styles --- */
+body {
+    font-family: "굴림", "Gulim", "돋움", "Dotum", sans-serif;
+    background-color: #000080; /* Deep blue background */
+    color: #FFFFFF; /* White text */
+    margin: 10px;
+    padding: 10px;
+}
+
+h3 {
+    color: #FFFF00; /* Bright yellow for headers */
+    text-shadow: 2px 2px #FF0000; /* Red shadow for a 3D effect */
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+a {
+    color: #00FF00; /* Bright green links */
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #FF00FF; /* Magenta on hover */
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+
+/* --- Layout & Containers --- */
+.container {
+    border: 5px groove #FFD700; /* Gold-ish border */
+    background-color: rgba(0, 0, 205, 0.8); /* Medium blue content background with some transparency */
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 10px 10px 5px #000000; /* Drop shadow */
+}
+
+header, footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #800080; /* Purple */
+    border: 3px dashed #FFFF00; /* Yellow dashed border */
+}
+
+header ol {
+    list-style-type: none;
+    padding: 0;
+}
+
+header ol li {
+    display: inline;
+    margin: 0 15px;
+}
+
+/* --- Forms & Tables --- */
+input[type="text"], input[type="number"] {
+    background-color: #C0C0C0; /* Silver */
+    border: 2px inset #808080;
+    color: #000000;
+    font-family: "굴림", "Gulim", sans-serif;
+}
+
+input[readonly] {
+    background-color: #A9A9A9; /* DarkGray */
+}
+
+button {
+    font-family: "궁서", "Gungsuh", serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    background: #D3D3D3; /* LightGray */
+    border-style: outset;
+    border-color: #FFFFFF #808080 #808080 #FFFFFF;
+    border-width: 3px;
+    padding: 5px 10px;
+}
+
+button:active {
+    border-style: inset;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 5px ridge #00FFFF; /* Cyan ridge border */
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+th, td {
+    border: 2px solid #FF00FF; /* Magenta borders */
+    padding: 8px;
+    text-align: center;
+}
+
+thead {
+    background-color: #FF69B4; /* HotPink */
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #F0F8FF; /* AliceBlue */
+}
+
+tbody tr:hover {
+    background-color: #FFFF00; /* Yellow hover */
+}
+
+
+/* --- Footer --- */
+footer {
+    margin-top: 20px;
+}
+
+footer div {
+    font-size: 12px;
+    color: #ADFF2F; /* GreenYellow */
+}

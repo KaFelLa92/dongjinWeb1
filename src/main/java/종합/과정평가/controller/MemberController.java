@@ -59,9 +59,17 @@ public class MemberController {
         return result;
     }
 
+    // *. 회원정보수정출력 ( == 개별조회)
+    @GetMapping ("/find")
+    public MemberDto memberFind(@RequestParam int custno){
+        MemberDto result = memberService.memberFind(custno);
+        return result;
+    }
+
+
     // * 회원넘버입력식
     // 맵핑으로
-    @GetMapping ("/add")
+    @GetMapping ("/add")  // 다중 맵핑은 (value = { 속성값1 , 속성값2 })
     public Map<String, Object> memberAddNextNo(){
         Map<String , Object> map = new HashMap<>();
         int nextNo = memberService.memberAddNextNo();

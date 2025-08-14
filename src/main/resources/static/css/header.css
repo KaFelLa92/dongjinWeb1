@@ -1,0 +1,52 @@
+/* =================================
+   Header Styles
+   ================================= */
+
+/* 헤더 전체 컨테이너 */
+#header {
+    display: flex;
+    justify-content: space-between; /* 메뉴들을 양쪽 끝으로 분산 */
+    align-items: center; /* 항목들을 수직 중앙 정렬 */
+    padding: 15px 30px; /* 내부 여백 (상하 15px, 좌우 30px) */
+    border-bottom: 1px solid #e0e0e0; /* 콘텐츠와 구분되는 하단 테두리 */
+    background-color: #ffffff;
+    height: 60px; /* 헤더 높이 고정 */
+    box-sizing: border-box;
+}
+
+/* 메뉴 목록(ul) 공통 스타일 */
+#header #sub-menu,
+#header #log-menu {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* 리스트 기본 스타일(점) 제거 */
+}
+
+/* 메뉴 항목(li) 공통 스타일 */
+#header #sub-menu > li,
+#header #log-menu > li {
+    margin: 0 15px; /* 각 항목 사이의 여백 */
+}
+
+/* 헤더 안의 링크(a) 공통 스타일 */
+#header a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: #333333; /* 기본 글자색 */
+    font-size: 16px;
+    font-weight: 500; /* 글자 두께 */
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s; /* 부드러운 색상 전환 효과 */
+}
+
+/* 헤더 안의 링크에 마우스를 올렸을 때 스타일 */
+#header a:hover {
+    color: #007bff; /* 글자색 변경 */
+    background-color: #f2f2f2; /* 배경색 변경 */
+}
+
+img {
+    width: 50px;
+}

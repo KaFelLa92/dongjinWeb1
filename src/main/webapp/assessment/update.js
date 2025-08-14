@@ -5,35 +5,33 @@ const memberUpdateView = async () => {
     console.log('memberAddView XXOK');
     // 게시물 번호 가져오기
     const custno = new URLSearchParams(location.search).get('custno');
+
+    // 유효성 검사
+    if(!custno){
+        alert('회원 번호가 존재하지 않습니다.')
+        return;
+    }
+
     // fetch
-    const response = await fetch(`/assessment/update?custno=${custno}`);
+    const response = await fetch(`/assessment/find?custno=${custno}`);
     const data = await response.json();
     // 회원번호, 가입일자 제외하고 수정 전 value 출력
+    const custnoInput = document.querySelector('.custno');
     const custname = document.querySelector('.custname');
     const phone = document.querySelector('.phone');
     const address = document.querySelector('.address');
     const grade = document.querySelector('.grade');
     const city = document.querySelector('.city');
+    const joindate = document.querySelector('.joindate');
     // value 넣기
+    custnoInput.value = data.custno;
     custname.value = data.custname;
     phone.value = data.phone;
     address.value = data.address;
     grade.value = data.grade;
+    joindate.value = data.joindate;
     city.value = data.city;
 
-    // 이미 value 있는 값들
-    // DAO에서 현재 회원번호 +1하는 코드 만들어서 넣기
-    const nextNo = document.querySelector('.nextNo');
-    nextNo.value = data.nextNo;
-
-    // date는 new Date() 로 오늘 날짜 넣으면 됨
-    const date = document.querySelector('.date');
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = ('0' + (today.getMonth() + 1)).slice(-2);
-    const day = ('0' + today.getDate()).slice(-2);
-    date.value = `${year}-${month}-${day}`;
-    console.log(date.value);
 }
 memberUpdateView();
 
@@ -41,6 +39,7 @@ memberUpdateView();
 const memberUpdate = async () => {
     console.log('memberAdd XXOK');
     // 입력할 값들
+    const custno = document.querySelector('.custno').value; // 수정할 대상 확인용. 사용자가 수정은 불가능.
     const custname = document.querySelector('.custname').value;
     const phone = document.querySelector('.phone').value;
     const address = document.querySelector('.address').value;
@@ -49,6 +48,7 @@ const memberUpdate = async () => {
 
     // 객체화
     const obj = {
+        // custno,
         custname,
         phone,
         address,

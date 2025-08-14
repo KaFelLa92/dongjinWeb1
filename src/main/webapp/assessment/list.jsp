@@ -5,15 +5,15 @@
     <head>
         <meta charset='utf-8'>
         <title> 회원목록조회/수정 </title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="retro.css">
     </head>
 
-    <body>
+    <body class="page-list">
 
         <!-- 현재 JSP 파일내 다른 JSP 포함하기 -->
         <jsp:include page="/assessment/header.jsp"></jsp:include> <!-- 띄어쓰기 조심 -->
 
-        <div>
+        <div class="container">
             <h3> 회원목록조회/수정 </h3>
             <table>
                 <thead>

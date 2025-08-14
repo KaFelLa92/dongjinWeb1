@@ -40,6 +40,12 @@ public class MemberService {
         return result;
     }
 
+    // * 회원 수정 출력
+    public MemberDto memberFind(int custno){
+        MemberDto result = memberDao.memberFind(custno);
+        return result;
+    }
+
     // * 회원 넘버 입력식
     public int memberAddNextNo(){
         int nextNo = memberDao.memberAddNextNo();
