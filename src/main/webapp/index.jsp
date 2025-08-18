@@ -5,6 +5,7 @@
     <head>
         <meta charset='utf-8'>
         <title> 회원관리 </title>
+        <link rel="stylesheet" href="/css/common.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
     </head>
 

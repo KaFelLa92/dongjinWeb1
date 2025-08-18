@@ -1,0 +1,44 @@
+[ 람다식(화살표) 함수 표현 ]
+    - JAVA : 정적 타입 할당
+        하이픈(-)을 씀
+        1) 메소드
+            int add( int a , int b ){ return a+b; }
+        2) 람다식 (람다표현식)
+            (int a , int b) -> { return a+b; }
+        3) 반복문
+            - for( int i = 0; i < 10; i++){ }
+            - for ( 타입변수 : 리스트/배열) { }
+            - 리스트.forEach( 변수 -> { } );
+            - 리스트.stream().map( 변수 -> { } ).collect( Collectors.to컬렉션명() );
+            - 리스트.stream().filter( 변수 -> { } ).collect(Collectors.to컬렉션명() );
+        * 자바 람다식/스트림API 추후에 부가 설명 ~
+    - JS : *동적 타입 할당*
+        이퀄(=)을 씀
+        1) 선언적 함수
+            function add(a , b) { return a+b; }
+            예]
+                function plus( a , b ) { return a+b; }
+                plus( 3 , 5 );
+        2) 화살표 함수 , **프레임워크/라이브러리에서 주로 사용됨**
+            ( a , b ) => { return a+b; }
+            예]
+                const plus = ( a , b ) => { return a+b }
+                plus( 3 , 5 );
+        3) 반복문
+            - *일반for문*            :  for ( let i = 0; i < 10; i++){ }
+            - 향상된for문            : for ( let index in 배열 ) { }
+            - 향상된for문            : for ( let value of 배열 ) { }
+            - forEach문(반환값없음)   : 리스트.forEach( 변수 => { } );
+                예] array.forEach( value => { console.log( value ); }
+                즉] return 없는 반복문
+
+            - map문(반환값있음)       : 리스트.map( 변수 => { } );
+                예] let newArray = array.map( value => { return value; }
+                즉] return 있는 반복문 , newArray 변수에는 반복 return 값이 저장된다.
+
+            - filter문(조건문있음)    : 리스트.filter( 변수 => { } );
+                예] let newArray = array.filter( value => { return value > 10; });
+                즉] 조건만족하는 return 있는 반복문 , newArray 변수에는 반복되면서 조건에 충족하는 return값이 저장된다.
+
+
+

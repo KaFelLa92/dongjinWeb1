@@ -56,6 +56,6 @@ group by m.custno, m.custname, m.grade
 having sum(mo.price) > 0
 order by 매출 desc;
 
-update member_tbl_02 set custname = ? , phone = ? , address = ? , grade = ? , city = ? where custno = ?
+update member_tbl_02 set custname = ? , phone = ? , address = ? , grade = ? , city = ? where custno = ?;
 
-select max
+select ifnull(max(custno) , 0) + 1 as nextNo from member_tbl_02;
