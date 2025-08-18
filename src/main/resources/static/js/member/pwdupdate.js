@@ -1,30 +1,36 @@
 console.log('pwdupdate XXOK');
 
-// [2] 새로운 패스워드 수정 newpwd
-const onPwdUpdate = async () => {
-    const mpwd = document.querySelector('.oldpwd').value;
-    const newpwd = document.querySelector('.newpwd').value;
-
-    const obj = {
-        oldpwd,
-        newpwd
-    }
-
+// [1] 기존 패스워드 확인 oldpwd
+const checkpwd = async () => {
+    const oldpwd = document.querySelector('.oldpwd').value;
     try {
         // (1) 비번 확인
-        const checkResponse = await fetch(`/member/check?type=mpwd&data=${mpwd}`)
-        const checkData = await checkResponse.json();
+        const response = await fetch(`/member/check?type=mpwd&data=${oldpwd}`)
+        const data = await response.json();
 
-        if (checkData == false) {
+        if (data == false) {
             alert('기존 패스워드가 일치하지 않습니다.')
             return;
         }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+// [2] 새로운 패스워드 수정 newpwd
+const onPwdUpdate = async () => {
+    await checkpwd();
+    const newpwd = document.querySelector('.newpwd').value;
+
+    try {
 
         // (2) 비번 수정
         const option = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(obj)
+            body: JSON.stringify( {newpwd : newpwd} )
         }
         const response = await fetch(`/member/update/password`, option);
         const data = await response.json();
