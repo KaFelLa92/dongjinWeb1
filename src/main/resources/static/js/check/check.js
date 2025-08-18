@@ -52,10 +52,3 @@ const phonecheck = async () => {
 
 
 }
-
-// [3] 비밀번호 유효성검사
-const passcheck = async () => {
-    const mpwd = document.querySelector('.oldpwd').value;
-    const passcheck = document.querySelector('.passcheck');
-
-}
