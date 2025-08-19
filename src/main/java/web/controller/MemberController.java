@@ -147,4 +147,17 @@ public class MemberController {
         return result;
     }
 
+    // 9. 아이디찾기
+    // http://localhost:8080/member/find?mname=유재석&mphone=010-1234-1234 이렇게 검사
+    @GetMapping("/find")
+    public MemberDto findId(String mname, String mphone){
+        return memberService.findId(mname , mphone);
+    }
+
+    // 10. 비밀번호 찾기(생성)
+    @PutMapping("/find")
+    public String findPwd(@RequestBody MemberDto memberDto){
+        return memberService.findPwd(memberDto);
+    }
+
 }

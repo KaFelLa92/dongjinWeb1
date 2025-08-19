@@ -168,4 +168,56 @@ public class MemberDao extends Dao {
         return false;
     } // func end
 
+    // [요구사항3] 아래 조건에 따라 아이디찾기 및 비밀번호를 찾기를 기능과 화면 find.jsp 을 구현하시오.
+    //1. 아이디 찾기 기능
+    //    - 입력: 이름, 연락처
+    //    - 처리: 이름+연락처 일치 시 아이디 반환
+    //    - 불일치 시 "회원정보 없음" 메시지
+
+    // 9. 아이디찾기 findID
+    public MemberDto findId(String mname , String mphone){
+        try{
+            String sql = "select mid from member where mname = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, mname);
+            ps.setString(2, mphone);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                MemberDto memberDto = new MemberDto();
+                memberDto.setMid(rs.getString("mid"));
+                return memberDto;
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return null;
+    }
+
+    //2. 비밀번호 찾기 기능
+    //    - 입력: 아이디, 연락처
+    //    - 처리: 아이디+연락처 일치 시 새로운 난수(6자릿수) 비밀번호 생성 후 반환
+    //    - 생성된 비밀번호를 DB에 업데이트(임시 비밀번호로 사용)
+
+    // 10. 비밀번호 찾기(생성) findPwd
+    public String findPwd(MemberDto memberDto){
+        int randomPwd = (int) (Math.random() * 1000000);
+        String newPwd = String.format("%06d" , randomPwd); // 6자리 난수
+        try{
+            String sql = "update member set mpwd = ? where mid = ? and mphone = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newPwd);
+            ps.setString(2, memberDto.getMid());
+            ps.setString(3, memberDto.getMphone());
+            int count = ps.executeUpdate();
+            if (count == 1){
+                return newPwd;
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        } // catch end
+        return null;
+    } // func end
+
+
+
 } // class end

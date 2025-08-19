@@ -59,4 +59,14 @@ public class MemberService {
         return result;
     }
 
+    // 9. 아이디찾기
+    public MemberDto findId(String mname , String mphone){
+        return memberDao.findId(mname , mphone);
+    }
+
+    // 10. 비밀번호찾기
+    public String findPwd(MemberDto memberDto){
+        return memberDao.findPwd(memberDto);
+    }
+
 }
