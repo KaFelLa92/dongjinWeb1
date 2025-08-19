@@ -31,5 +31,16 @@ public class FileController {
         System.out.println("FileController.fileDownload");
         System.out.println("fileName = " + fileName);
         fileService.fileDownload(fileName, response);
-    }
+    } // func end
+
+    // [3] 삭제
+    // Taland에서 테스트할 때 DELETE
+    // 브라우저로 테스트할 때 GET
+    @GetMapping("/delete")
+    public boolean fileDelete (@RequestParam String fileName) {
+        boolean result = fileService.fileDelete(fileName);
+        return  result;
+    } // func end
+
+
 } // class end
