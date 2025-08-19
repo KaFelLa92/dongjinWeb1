@@ -96,7 +96,7 @@ public class ProductDao extends Dao {
         return list;
     }
     
-    // [3] 제품 상세 조회
+    // [3] 특정 제품 조회
     public ProductDto getProduct(int pno){
         try{
             String sql = "select * from product where pno = ?";
@@ -115,7 +115,6 @@ public class ProductDao extends Dao {
                 productDto.setMno(rs.getInt("mno"));
                 return productDto;
             }
-
         } catch (Exception e) {
             System.out.println(e);
         } // catch end

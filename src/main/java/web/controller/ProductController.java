@@ -48,17 +48,17 @@ public class ProductController {
         return result;
     } // func end
 
-
     // [2] 제품 전체 조회
     @GetMapping("/list")
-    public List<ProductDto> getAllProduct(HttpSession session){
+    public List<ProductDto> getAllProduct(){
         return productService.getAllProduct();
     }
 
     // [3] 제품 상세 조회
+    // http://localhost:8080/product/find?pno=3
     @GetMapping("/find")
     public ProductDto getProduct(@RequestParam int pno){
-
+        return productService.getProduct(pno);
     }
 
 

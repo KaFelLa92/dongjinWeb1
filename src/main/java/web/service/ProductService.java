@@ -38,8 +38,16 @@ public class ProductService {
 
     // [3] 특정 제품 정보 + 이미지 포함 조회
     public ProductDto getProduct(int pno){
+        // 1. 특정한 제품 조회
         ProductDto productDto = productDao.getProduct(pno);
-        productDao.getProductImages(productDto.getPno());
+        // 2. 조회 성공했으면 제품의 이미지명 조회
+        if(productDto != null){
+            List<String> images =
+            productDao.getProductImages(productDto.getPno()); // 2-2 메소드 호출
+            productDto.setImages(images);
+        }
+        // 3. 리턴
+        return productDto;
     }
 
 } // class end
