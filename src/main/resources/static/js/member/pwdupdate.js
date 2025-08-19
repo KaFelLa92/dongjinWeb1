@@ -23,17 +23,32 @@ const checkpwd = async () => {
 const onPwdUpdate = async () => {
     await checkpwd();
     const newpwd = document.querySelector('.newpwd').value;
-
+    const oldpwd = document.querySelector('.oldpwd').value;
+    const obj = {
+        newpwd,
+        oldpwd
+    }
     try {
 
         // (2) 비번 수정
         const option = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify( {newpwd : newpwd} )
+            body: JSON.stringify(obj)
         }
         const response = await fetch(`/member/update/password`, option);
         const data = await response.json();
+
+        // 유효성검사
+        if (!oldpwd || !newpwd) {
+            alert('기존 비밀번호와 새로운 비밀번호를 모두 입력해주세요.');
+            return;
+        }
+
+        if (oldpwd == newpwd) {
+            alert('새로운 비밀번호는 기존 비밀번호와 달라야 합니다.');
+            return;
+        }
 
         if (data == true) {
             alert('비밀번호가 변경되었습니다.')
