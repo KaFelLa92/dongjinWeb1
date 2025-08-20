@@ -104,6 +104,7 @@ input[type="password"] {
 
 button, .btn {
     padding: 10px 20px;
+    border-radius: 20px;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
@@ -183,6 +184,7 @@ thead {
     width: 100%;
     margin-bottom: 25px;
     margin-top: 20px;
+    border-radius: 20px;
 }
 
 .login-container .sub-links a {
@@ -197,5 +199,10 @@ thead {
 }
 
 .data-container {
+    flex-direction: column;
+}
+
+.product-container {
+    display: flex;
     flex-direction: column;
 }

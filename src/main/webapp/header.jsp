@@ -18,6 +18,7 @@
                 <li> <a href="/kakao/map.jsp"> 카카오맵 </a> </li>
                 <li> <a href="/kakao/datamap.jsp"> 데이터맵 </a> </li>
                 <li> <a href="/example7/exam7.jsp"> 실습7 </a> </li>
+                <li> <a href="/product/create.jsp"> 제품등록 </a> </li>
             </ul>
             <ul id="log-menu"> <!-- 로그인 안 되어있을 때 메뉴 -->
 
