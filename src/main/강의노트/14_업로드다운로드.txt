@@ -1,0 +1,74 @@
+○ 클라이언트 : 사용자 / ○ 서버 : 자바(스프링/톰캣) / ○ 개발환경 : 실행 전
+[ 업로드 ] 클라이언트가 서버에 데이터(파일)를 전송하는 행위
+[ 다운로드 ] 서버가 클라이언트에게 데이터(파일)을 전송하는 행위
+
+[ 스트림 ] (바이트 단위) 데이터 흐름 , 입출력/네트워크/파일처리 등 사용됨
+    ○ 바이트? 8bit -> 1byte , 윈도우 기본 저장 단위 : byte
+[ 버퍼 ] 데이터가 이동하는 흐름 간의 처리속도를 일정하게하기 위한 임시 저장소
+    ○ 버퍼링
+
+[ 자바 입출력 ]
+    INPUT : 외부에서 자바 메모리로 들어오는 행위 , FileInputStream
+    OUTPUT : 자바 메모리에서 외부로 나가는 행위 , ServletOutputStream
+        ○ 서블릿? 자바 회사에서 HTTP 요청/응답 매핑하는 기술을 가진 클래스
+
+[ UUID ] 범용 고유 식별자 , 무한대와 가까운 고유 난수 값 생성
+    1. String uuid = UUID.randomUUID().toString();
+
+[ 업로드 폴더 ] : 클라이언트가
+    방법1] 프로젝트 폴더내 src   : 개발자가 쓰는 폴더(실행 전 / 배포 전)
+    방법2] 프로젝트 폴더내 build : 컴파일된 *배포*용 폴더(실행 후 / 배포 후) 즉] 서버 폴더
+    1) 프로젝트 경로
+        방법1) C:\User\tj-bu-702-01\Desktop\cording\dongjinWeb1        * PC가 바뀔 때마다 수정해야함
+        방법2) System.getProperty("user.dir")                          * 현재 PC의 프로젝트 절대경로 반환
+    2) 프로젝트 업로드 경로 연결
+        C:\User\tj-bu-702-01\Desktop\cording\dongjinWeb1/src/resources/static/upload/
+        C:\User\tj-bu-702-01\Desktop\cording\dongjinWeb1/build/resources/static/upload/
+
+[ File 클래스 ] : 자바에서 외부 파일을 조작하는 클래스
+    1. File file = new File( 파일경로);         : 파일경로와 연결/연동
+    2. 주요 메소드
+        1) .exists()        : 지정한 파일 경로에 파일이 존재하면 true 아니면 false
+        2) .mkdir()         : 지정한 파일 경로 생성
+        3) .length()        : 지정한 파일의 바이트 반환 (long타입)
+        4) .delete()        : 지정한 파일 삭제
+
+* 스프링 업로드 구현 방법
+    1. MultipartFile 인터페이스 이용한 첨부파일(바이트) 매핑
+        - MultipartFile ? 주로 대용량 바이트 파일을 매핑/조작할 때 사용되는 *인터페이스*
+        - @ModelAttribute로 매핑한다.
+        - 여러개 첨부파일 : List<MultipartFile>
+        - 첨부파일 업로드 용량 제한 : application.properties 설정한다.
+            # 파일 마다의 용량 제한
+            spring.servlet.multipart.max-file-size = 10MB
+            # 요청 마다의 용량 제한
+            spring.servlet.multipart.max-request-size = 100MB
+
+    2. MultipartFile 주요 메소드
+        1) .transferTo( 파일객체 ); : 지정한 파일객체 경로에 첨부파일을 업로드(이동) , 일반 예외발생
+        2) .getOriginalFilename(); : 첨부파일의 파일명 반환
+            - uuid + "_" + multipartFile.getOriginalFilename() : 사용자들의 첨부파일명 중복 제거 위한 방법
+
+* 다운로드 구현 방법
+    1. 흐름구조
+        1) 자바가 다운로드 받을 파일을 바이트로 가져온다.
+        클라이언트 ----- 짱구.jpg -----> 서버(자바) ----- 짱구.jpg Input -----> build
+            1. FileInputStream fin = new FileInputStream(다운로드받을 파일 경로 객체);
+            2. long fileSize = file.length();
+            3. byte[] bytes = new byte[ (int) fileSize ];
+            4. fin.read( bytes );
+
+        2) 가져온 바이트를 클라이언트에게 보낸다.
+        클라이언트 <----- 짱구.jpg Output <----- 서버(자바)
+            * FileOutputStream 아닌 ServletOutputStream();
+            1. ServletOutputStream fout = response.getOutputStream();
+            2. fout.write( bytes );
+
+    2. OUTPUT을 브라우저 다운로드 형식 지정
+        response.setHeader("Content-Disposition" , "attachment;filename=" + "파일명" );
+
+    3. 스트림(버퍼) 안전하게 닫기
+        fin.close();        : 스트림 객체를 수동으로 직접 제거하는 방법
+        fout.close();       :
+
+

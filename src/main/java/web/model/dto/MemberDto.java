@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Data // 게터 세터 투스트링
 public class MemberDto {
     private int mno;
     private String mid;
