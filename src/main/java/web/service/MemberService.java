@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
+import web.model.dto.PointlogDto;
 
 import java.util.Map;
 
@@ -14,20 +15,38 @@ public class MemberService {
     @Autowired public MemberService(MemberDao memberDao){
         this.memberDao = memberDao;
     }
+    @Autowired PointlogService pointlogService;
+
 
     // 1. 회원가입
     public int signup (MemberDto memberDto){
         int result = memberDao.signup(memberDto);
+        if( result > 0){
+            int plpoint = 1000;
+            String plcomment = "회원가입";
+            PointlogDto pointlogDto = new PointlogDto();
+            pointlogDto.setMno(result);
+            pointlogDto.setPlpoint(plpoint);
+            pointlogDto.setPlcomment(plcomment);
+            pointlogService.PointAdd(pointlogDto);
+        }
         return result;
     }
 
     // 2. 로그인
     public int login (MemberDto memberDto){
         int result = memberDao.login(memberDto);
+        if (result > 0){
+            PointlogDto pointlogDto = new PointlogDto();
+            pointlogDto.setMno(result);
+            pointlogDto.setPlpoint(10);
+            pointlogDto.setPlcomment("로그인");
+            pointlogService.PointAdd(pointlogDto);
+        }
         return result;
     }
 
-    // 4. 서비스
+    // 4. 내 정보
     public MemberDto info(int mno){
         MemberDto result = memberDao.info(mno);
         return result;
@@ -66,6 +85,9 @@ public class MemberService {
 
     // 10. 비밀번호찾기
     public String findPwd(MemberDto memberDto){
+        int randomPwd = (int) (Math.random() * 1000000);
+        String newPwd = String.format("%06d" , randomPwd); // 6자리 난수
+        memberDto.setMpwd(newPwd); // 반환한 비번에 6자리 난수를 대입
         return memberDao.findPwd(memberDto);
     }
 

@@ -200,17 +200,15 @@ public class MemberDao extends Dao {
 
     // 10. 비밀번호 찾기(생성) findPwd
     public String findPwd(MemberDto memberDto){
-        int randomPwd = (int) (Math.random() * 1000000);
-        String newPwd = String.format("%06d" , randomPwd); // 6자리 난수
         try{
             String sql = "update member set mpwd = ? where mid = ? and mphone = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, newPwd);
+            ps.setString(1, memberDto.getMpwd());
             ps.setString(2, memberDto.getMid());
             ps.setString(3, memberDto.getMphone());
             int count = ps.executeUpdate();
             if (count == 1){
-                return newPwd;
+                return memberDto.getMpwd(); // 현재 비번 반환
             }
         } catch (Exception e){
             System.out.println(e);

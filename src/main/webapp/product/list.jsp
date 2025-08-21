@@ -4,7 +4,7 @@
 
     <head>
         <meta charset='utf-8'>
-        <title> 제품등록 </title>
+        <title> 제품조회 </title>
         <link rel="stylesheet" href="/css/common.css"
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
     </head>
@@ -15,20 +15,12 @@
         <jsp:include page="/header.jsp"></jsp:include> <!-- 띄어쓰기 조심 -->
 
         <div class="product-container" id="container">
-            <h2> 제품등록 페이지 </h2>
-            <form id="productForm">
-                제품명 : <input name="pname" />
-                제품가격 : <input name="pprice" />
-                제품설명 : <textarea name="pcomment"></textarea>
-                제품이미지 : <input type="file" multiple name="uploads" />
+            <div id="map" style="width:100%;height:800px;">
 
-                판매위치(카카오지도API)
-                <div id="map" style="width:100%;height:500px;"></div>
-                <p><em>지도를 클릭해주세요!</em></p>
-                <p id="result"></p>
+            </div>
+            <div id="product">
 
-                <button type="button" onclick="onCreate()"> 제품등록 </button>
-            </form>
+            </div>
         </div>
 
         <!-- kakao APP JS 먼저 호출 -->
@@ -36,7 +28,8 @@
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8862611df14b8d0f1a6016b7e9a5ae24&libraries=clusterer"></script>
 
         <!-- JS 호출 -->
-        <script src="/js/product/create.js"></script>
+        <script src="/js/kakao/position.js"></script>
+        <script src="/js/product/list.js"></script>
 
     </body>
 

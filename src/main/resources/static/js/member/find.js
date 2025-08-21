@@ -7,7 +7,7 @@ console.log('find XXOK');
 //    - 불일치 시 "회원정보 없음" 메시지
 
 const findId = async () => {
-    // 마크 다운 단위 객체화
+    // 마크업 단위 객체화
     const mname = document.querySelector('.mname').value;
     const mphone = document.querySelector('.mphone').value;
     // 유효성 검사
@@ -44,7 +44,7 @@ const findId = async () => {
 //    - 생성된 비밀번호를 DB에 업데이트(임시 비밀번호로 사용)
 
 const findPwd = async () => {
-    // 마크 다운 단위 확인
+    // 마크업 단위 확인
     const mid = document.querySelector('.mid').value;
     const mphone = document.querySelector('.mphone2').value;
 

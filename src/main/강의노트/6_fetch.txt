@@ -46,6 +46,8 @@
                             body : JSON.stringify( data ) }
         then( 응답객체 => 응답객체.json() ) : 응답객체를 json 타입으로 변환
             * then( 응답객체 => 응답객체.text() ) : 응답객체를 문자 타입으로 변환 (쓸 일은 없다)
+            * 주의할점 : 자바에서 보내오는 타입이 String 타입이거나 값이 null이면 .json() 불가능하다.
+            * 추후에 타입반환 ResponseBody< memberDto >
         then( 변환된객체 => { 실행문 } )    : 통신 응답 결과
         catch( 에러객체 => { 실행문 } )     : 통신 에러 발생
 
